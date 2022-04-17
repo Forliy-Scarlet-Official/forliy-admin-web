@@ -2,10 +2,12 @@
   <n-theme-editor>
     <n-config-provider :theme-overrides="themeOverrides">
       <div id="layout">
-        <Menu></Menu>
-        <div class="header"></div>
-        <div class="content">
-          <router-view></router-view>
+        <layout-menu></layout-menu>
+        <div class="right">
+          <layout-header></layout-header>
+          <div class="content">
+            <router-view></router-view>
+          </div>
         </div>
       </div>
     </n-config-provider>
@@ -14,7 +16,8 @@
 <script lang="ts" setup>
 import type { GlobalThemeOverrides } from "naive-ui"
 import { NThemeEditor } from "naive-ui"
-import Menu from "./components/menu.vue"
+import LayoutMenu from "./components/menu.vue"
+import LayoutHeader from "./components/header.vue"
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -37,5 +40,12 @@ const themeOverrides: GlobalThemeOverrides = {
   bottom: 0;
   left: 0;
   right: 0;
+  display: flex;
+  .right {
+    width: 100%;
+    .content {
+      padding: 20px;
+    }
+  }
 }
 </style>

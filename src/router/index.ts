@@ -16,26 +16,6 @@ export const routes: RouteRecordRaw[] = [
           icon: i.HomeOutline,
         },
       },
-      {
-        name: "test1",
-        path: "test1",
-        component: () => import("@/views/home/index.vue"),
-        meta: {
-          title: "111",
-          icon: i.HomeOutline,
-        },
-        children: [
-          {
-            name: "test2",
-            path: "test2",
-            component: () => import("@/views/home/index.vue"),
-            meta: {
-              title: "首页",
-              icon: i.HomeOutline,
-            },
-          },
-        ],
-      },
     ],
   },
 ]

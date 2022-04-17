@@ -1,7 +1,12 @@
 <template>
   <div :class="['menu', collapsed ? 'collapsed' : '']">
     <div class="icon">
-      <img src="http://q1.qlogo.cn/g?b=qq&nk=2257290268&s=640" alt="" />
+      <img
+        src="http://q1.qlogo.cn/g?b=qq&nk=2257290268&s=640"
+        alt=""
+        :class="collapsed ? 'collapsed' : ''"
+        @click="collapsed = !collapsed"
+      />
       <span class="title">Forliy Admin</span>
     </div>
     <n-menu
@@ -19,18 +24,18 @@ import { RouteRecordRaw, RouterLink } from "vue-router"
 import { NIcon } from "naive-ui"
 import type { MenuOption } from "naive-ui"
 import { routes } from "../../router/index"
-import { keyBy } from "lodash"
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) })
 }
 
 const collapsed = ref(false)
-const menuOptions: MenuOption[] = renderMenuOptions(routes[0].children)
-
-function renderMenuOptions(routes) {
-  return routes.map((route) => {
-    let option: { label: any; key: any; icon: any; [k: string]: any } = {
+const menuOptions: MenuOption[] | undefined = renderMenuOptions(
+  routes[0].children
+)
+function renderMenuOptions(routes: RouteRecordRaw[] | undefined) {
+  return routes?.map((route, index) => {
+    let option: MenuOption = {
       label: () =>
         h(
           RouterLink,
@@ -39,8 +44,8 @@ function renderMenuOptions(routes) {
           },
           { default: () => route?.meta?.title }
         ),
-      key: route.name,
       icon: renderIcon(route?.meta?.icon as Component),
+      key: index,
     }
     if (route.children) {
       option.children = renderMenuOptions(route.children)
@@ -83,6 +88,9 @@ function renderMenuOptions(routes) {
       white-space: nowrap;
     }
     img {
+      &.collapsed {
+        transform: rotate(360deg);
+      }
       width: 70px;
       height: 70px;
       display: block;
