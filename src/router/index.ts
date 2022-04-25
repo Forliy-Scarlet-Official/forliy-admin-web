@@ -1,6 +1,8 @@
 import * as i from "@vicons/ionicons5"
 import { RouteRecordRaw } from "vue-router"
 
+import me from "./modules/me"
+
 export const routes: RouteRecordRaw[] = [
   {
     path: "/",
@@ -16,6 +18,7 @@ export const routes: RouteRecordRaw[] = [
           icon: i.HomeOutline,
         },
       },
+      ...me,
     ],
   },
 ]
