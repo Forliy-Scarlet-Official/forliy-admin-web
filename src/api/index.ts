@@ -1,3 +1,3 @@
 import { get } from "@/utils/request";
 
-export const getColorList = () => get("/csolor/list");
+export const getColorList = () => get("/color/list");
