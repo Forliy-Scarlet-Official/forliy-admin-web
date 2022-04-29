@@ -1,9 +1,9 @@
 <template>111</template>
 <script lang="ts" setup>
 import { onMounted } from "vue";
-import { test } from "@/api/index";
+import { getColorList } from "@/api/index";
 onMounted(() => {
-  test().then((res) => {
+  getColorList().then((res) => {
     // console.log(res.data)
   });
 });

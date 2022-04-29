@@ -1,3 +1,3 @@
 import { get } from "@/utils/request";
 
-export const test = () => get("/mock/color/list");
+export const getColorList = () => get("/csolor/list");
