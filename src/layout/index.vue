@@ -1,23 +1,23 @@
 <template>
-  <n-theme-editor>
-    <n-config-provider :theme-overrides="themeOverrides">
-      <div id="layout">
-        <layout-menu></layout-menu>
-        <div class="right">
-          <layout-header></layout-header>
-          <div class="content">
-            <router-view></router-view>
-          </div>
+  <!-- <n-theme-editor> -->
+  <n-config-provider :theme-overrides="themeOverrides">
+    <div id="layout">
+      <layout-menu></layout-menu>
+      <div class="right">
+        <layout-header></layout-header>
+        <div class="content">
+          <router-view></router-view>
         </div>
       </div>
-    </n-config-provider>
-  </n-theme-editor>
+    </div>
+  </n-config-provider>
+  <!-- </n-theme-editor> -->
 </template>
 <script lang="ts" setup>
-import type { GlobalThemeOverrides } from "naive-ui"
-import { NThemeEditor } from "naive-ui"
-import LayoutMenu from "./components/menu.vue"
-import LayoutHeader from "./components/header.vue"
+import type { GlobalThemeOverrides } from "naive-ui";
+import { NThemeEditor } from "naive-ui";
+import LayoutMenu from "./components/menu.vue";
+import LayoutHeader from "./components/header.vue";
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
@@ -31,7 +31,7 @@ const themeOverrides: GlobalThemeOverrides = {
     errorColorHover: "#7237ADFF",
     errorColorSuppl: "#7237ADFF",
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 #layout {
@@ -44,7 +44,7 @@ const themeOverrides: GlobalThemeOverrides = {
   .right {
     width: 100%;
     .content {
-      padding: 20px;
+      position: relative;
     }
   }
 }

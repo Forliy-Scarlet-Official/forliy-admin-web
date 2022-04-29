@@ -15,24 +15,34 @@
       :collapsed-width="74"
       collapse-mode="width"
       :width="250"
+      :value="currentPage"
     />
   </div>
 </template>
 <script lang="ts" setup>
-import { h, Component, ref } from "vue"
-import { RouteRecordRaw, RouterLink } from "vue-router"
-import { NIcon } from "naive-ui"
-import type { MenuOption } from "naive-ui"
-import { routes } from "../../router/index"
+import { h, Component, ref, computed } from "vue";
+import { RouteRecordRaw, RouterLink } from "vue-router";
+import { useRoute } from "vue-router";
+import { NIcon } from "naive-ui";
+import type { MenuOption } from "naive-ui";
+import { routes } from "../../router/index";
 
 function renderIcon(icon: Component) {
-  return () => h(NIcon, null, { default: () => h(icon) })
+  return () => h(NIcon, null, { default: () => h(icon) });
 }
 
-const collapsed = ref(false)
+const collapsed = ref(false);
 const menuOptions: MenuOption[] | undefined = renderMenuOptions(
   routes[0].children
-)
+);
+
+//当前选中菜单并展开（key）
+const route = useRoute();
+const currentPage = computed(() => {
+  return route.name;
+});
+
+//渲染左侧菜单
 function renderMenuOptions(routes: RouteRecordRaw[] | undefined) {
   return routes?.map((route, index) => {
     let option: MenuOption = {
@@ -45,13 +55,13 @@ function renderMenuOptions(routes: RouteRecordRaw[] | undefined) {
           { default: () => route?.meta?.title }
         ),
       icon: renderIcon(route?.meta?.icon as Component),
-      key: index,
-    }
+      key: String(route.name),
+    };
     if (route.children) {
-      option.children = renderMenuOptions(route.children)
+      option.children = renderMenuOptions(route.children);
     }
-    return option
-  })
+    return option;
+  });
 }
 </script>
 <style lang="scss" scoped>

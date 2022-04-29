@@ -1,11 +1,6 @@
-<template>111</template>
+<template><div class="box">111</div></template>
 <script lang="ts" setup>
 import { onMounted } from "vue";
-import { getColorList } from "@/api/index";
-onMounted(() => {
-  getColorList().then((res) => {
-    // console.log(res.data)
-  });
-});
+onMounted(() => {});
 </script>
 <style lang="scss" scoped></style>

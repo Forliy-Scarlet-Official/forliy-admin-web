@@ -1,7 +1,7 @@
-import * as i from "@vicons/ionicons5"
-import { RouteRecordRaw } from "vue-router"
+import * as i from "@vicons/ionicons5";
+import { RouteRecordRaw } from "vue-router";
 
-import me from "./modules/me"
+import me from "./modules/me";
 
 export const routes: RouteRecordRaw[] = [
   {
@@ -21,4 +21,4 @@ export const routes: RouteRecordRaw[] = [
       ...me,
     ],
   },
-]
+];

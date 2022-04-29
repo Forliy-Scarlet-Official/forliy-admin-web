@@ -36,7 +36,7 @@ export const get = (
     type?: Method;
     path?: string;
   }
-) => {
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios({
       method: options?.type || "get",
@@ -44,10 +44,10 @@ export const get = (
       params: params || {},
     })
       .then((res) => {
-        resolve(res);
+        resolve(res.data);
       })
       .catch((err) => {
-        reject(err);
+        reject(err.data);
       });
   });
 };
@@ -59,7 +59,7 @@ export const post = (
     type?: Method;
     path?: string;
   }
-) => {
+): Promise<any> => {
   return new Promise((resolve, reject) => {
     axios({
       method: options?.type || "post",
@@ -67,10 +67,10 @@ export const post = (
       data: data || {},
     })
       .then((res) => {
-        resolve(res);
+        resolve(res.data);
       })
       .catch((err) => {
-        reject(err);
+        reject(err.data);
       });
   });
 };
