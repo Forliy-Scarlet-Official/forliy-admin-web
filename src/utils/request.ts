@@ -1,5 +1,6 @@
 import axios from "axios";
 import { Method } from "axios";
+import bus from "@/utils/bus";
 
 axios.defaults.baseURL = import.meta.env.VITE_APP_BASEAPI;
 
@@ -25,6 +26,26 @@ axios.interceptors.response.use(
   function (error) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
+    const response = error.response;
+    switch (response.status) {
+      case 401:
+        bus.emit("onError", "登陆已过期");
+        break;
+      case 403:
+        bus.emit("onError", "权限不足");
+        break;
+      case 404:
+        bus.emit("onError", "找不到资源");
+        break;
+      case 500:
+        bus.emit("onError", "服务端错误");
+        break;
+      case 503:
+        bus.emit("onError", "服务端错误");
+        break;
+      default:
+        break;
+    }
     return Promise.reject(error);
   }
 );

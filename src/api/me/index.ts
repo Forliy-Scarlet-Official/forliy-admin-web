@@ -16,7 +16,7 @@ export class Color extends normalApi {
 
   getList = (params: searchColorReqBody) => get("/color/list", params);
 
-  getCount = (params: { id: number; name: string }) =>
+  getCount = (params: { id?: number; name: string }) =>
     get("/color/count", params);
 
   add = (data: updateColorReqBody) => post("/color", data);

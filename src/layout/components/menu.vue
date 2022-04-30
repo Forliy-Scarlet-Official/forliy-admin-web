@@ -15,6 +15,7 @@
       :collapsed-width="74"
       collapse-mode="width"
       :width="250"
+      :expanded-keys="expandedKeys"
       :value="currentPage"
     />
   </div>
@@ -40,6 +41,12 @@ const menuOptions: MenuOption[] | undefined = renderMenuOptions(
 const route = useRoute();
 const currentPage = computed(() => {
   return route.name;
+});
+const expandedKeys = computed(() => {
+  const arr = route.matched.map((item) => {
+    return item.name;
+  });
+  return arr;
 });
 
 //渲染左侧菜单

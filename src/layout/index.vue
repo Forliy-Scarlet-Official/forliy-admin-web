@@ -14,10 +14,15 @@
   <!-- </n-theme-editor> -->
 </template>
 <script lang="ts" setup>
-import type { GlobalThemeOverrides } from "naive-ui";
-import { NThemeEditor } from "naive-ui";
+import { GlobalThemeOverrides, useMessage } from "naive-ui";
 import LayoutMenu from "./components/menu.vue";
 import LayoutHeader from "./components/header.vue";
+import bus from "@/utils/bus";
+
+const message = useMessage();
+bus.on("onError", (msg) => {
+  message.error(String(msg));
+});
 
 const themeOverrides: GlobalThemeOverrides = {
   common: {
