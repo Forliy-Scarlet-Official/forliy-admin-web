@@ -12,6 +12,6 @@
 
 @font-face {
   font-family: "JetBrains Mono";
-  src: url("../public/fonts/JetBrainsMono-Regular.ttf");
+  src: url("@/assets/fonts/JetBrainsMono-Regular.ttf");
 }
 </style>
