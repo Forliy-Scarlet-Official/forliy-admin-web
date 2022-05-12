@@ -7,5 +7,11 @@
 <style lang="scss">
 * {
   box-sizing: border-box;
+  font-family: "JetBrains Mono";
+}
+
+@font-face {
+  font-family: "JetBrains Mono";
+  src: url("../public/fonts/JetBrainsMono-Regular.ttf");
 }
 </style>

@@ -14,7 +14,7 @@
       :collapsed="collapsed"
       :collapsed-width="74"
       collapse-mode="width"
-      :width="250"
+      :width="270"
       :expanded-keys="expandedKeys"
       :value="currentPage"
     />
@@ -73,7 +73,7 @@ function renderMenuOptions(routes: RouteRecordRaw[] | undefined) {
 </script>
 <style lang="scss" scoped>
 .menu {
-  width: 250px;
+  width: 270px;
   overflow: hidden;
   transition: 0.2s;
   height: 100%;

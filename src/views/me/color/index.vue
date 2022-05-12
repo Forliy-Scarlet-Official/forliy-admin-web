@@ -61,7 +61,6 @@ const handleSearch = () => {
   getList({ ...form, page: 1 });
 };
 
-// 分页
 const handlePageChange = (page: number) => {
   form.page = page;
   getList({ ...form });
@@ -71,7 +70,7 @@ const handlePageSizeChange = (pageSize: number) => {
   getList({ ...form, page: 1 });
 };
 
-// 接口
+// 查询
 const getList = (form: searchColorReqBody) => {
   Promise.all([
     color.getList(form),
@@ -81,7 +80,6 @@ const getList = (form: searchColorReqBody) => {
     total.value = vals[1];
   });
 };
-
 onMounted(() => {
   getList(form);
 });
