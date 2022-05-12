@@ -22,23 +22,11 @@
         </n-button>
       </div>
     </div>
-    <n-data-table
-      :columns="columns"
-      :data="data"
-      :bordered="false"
-      :row-props="rowProps"
-    />
-    <n-dropdown
-      placement="bottom-start"
-      trigger="manual"
-      :x="x"
-      :y="y"
-      :on-clickoutside="onClickoutside"
-      :options="dropdownOptions"
-      :show="showDropdown"
-      @select="handleDropSelect"
-    >
-    </n-dropdown>
+    <data-table
+      :tableColumns="columns"
+      :tableData="data"
+      :dropdownOptions="dropdownOptions"
+    ></data-table>
     <div class="pagination">
       <n-pagination
         v-model:page="form.page"
@@ -52,85 +40,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { ref, onMounted, h, Ref, reactive, nextTick } from "vue";
-import { DataTableColumns, DropdownOption, NButton } from "naive-ui";
+import DataTable from "@/components/dataTable.vue";
+import { ref, onMounted, Ref, reactive } from "vue";
 import { Color, searchColorReqBody } from "@/api/me/index";
+import { dropdownOptions, listItem, columns } from "./color";
+
 const color = new Color();
-
-// 右键菜单
-const showDropdown = ref(false);
-const dropdownOptions: DropdownOption[] = [
-  {
-    label: "编辑",
-    key: "edit",
-  },
-  {
-    label: () => h("span", { style: { color: "red" } }, "删除"),
-    key: "delete",
-  },
-];
-const x = ref(0);
-const y = ref(0);
-const handleDropSelect = () => {
-  showDropdown.value = false;
-};
-const onClickoutside = () => {
-  showDropdown.value = false;
-};
-const rowProps = (row: listItem) => {
-  return {
-    onContextmenu: (e: MouseEvent) => {
-      e.preventDefault();
-      showDropdown.value = false;
-      nextTick().then(() => {
-        showDropdown.value = true;
-        x.value = e.clientX;
-        y.value = e.clientY;
-      });
-    },
-  };
-};
-
-// 表格
-type listItem = {
-  id: number;
-  name: string;
-  a: number;
-  r: number;
-  g: number;
-  b: number;
-};
-const columns: DataTableColumns<listItem> = [
-  {
-    title: "名称",
-    key: "name",
-  },
-  {
-    title: "alpha",
-    key: "a",
-  },
-  {
-    title: "r",
-    key: "r",
-  },
-  {
-    title: "g",
-    key: "g",
-  },
-  {
-    title: "b",
-    key: "b",
-  },
-  {
-    title: "预览",
-    key: "actions",
-    render(row) {
-      return h("div", {
-        style: `width:50px;height:20px;background:rgba(${row.r},${row.g},${row.b},${row.a})`,
-      });
-    },
-  },
-];
 const data: Ref<listItem[]> = ref([]);
 
 // 查询
