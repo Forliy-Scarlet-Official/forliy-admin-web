@@ -19,33 +19,33 @@ export default [
           icon: i.ColorPaletteOutline,
         },
       },
-      {
-        name: "charactor",
-        path: "charactor",
-        component: () => import("@/views/me/color/index.vue"),
-        meta: {
-          title: "角色/性格",
-          icon: i.FitnessOutline,
-        },
-      },
-      {
-        name: "hair",
-        path: "hair",
-        component: () => import("@/views/me/color/index.vue"),
-        meta: {
-          title: "发型",
-          icon: i.EggOutline,
-        },
-      },
-      {
-        name: "face",
-        path: "face",
-        component: () => import("@/views/me/color/index.vue"),
-        meta: {
-          title: "形象/外貌",
-          icon: i.HappyOutline,
-        },
-      },
+      // {
+      //   name: "charactor",
+      //   path: "charactor",
+      //   component: () => import("@/views/me/color/index.vue"),
+      //   meta: {
+      //     title: "角色/性格",
+      //     icon: i.FitnessOutline,
+      //   },
+      // },
+      // {
+      //   name: "hair",
+      //   path: "hair",
+      //   component: () => import("@/views/me/color/index.vue"),
+      //   meta: {
+      //     title: "发型",
+      //     icon: i.EggOutline,
+      //   },
+      // },
+      // {
+      //   name: "face",
+      //   path: "face",
+      //   component: () => import("@/views/me/color/index.vue"),
+      //   meta: {
+      //     title: "形象/外貌",
+      //     icon: i.HappyOutline,
+      //   },
+      // },
     ],
   },
 ];

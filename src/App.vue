@@ -1,11 +1,9 @@
 <template>
   <n-message-provider>
-    <Layout></Layout>
+    <router-view></router-view>
   </n-message-provider>
 </template>
-<script setup lang="ts">
-import Layout from "@/layout/index.vue";
-</script>
+<script setup lang="ts"></script>
 <style lang="scss">
 * {
   box-sizing: border-box;
