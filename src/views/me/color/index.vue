@@ -12,14 +12,9 @@
         />
       </div>
       <div class="search-add">
-        <n-button size="large" type="primary">
-          <template #icon>
-            <n-icon>
-              <i-add />
-            </n-icon>
-          </template>
-          添加
-        </n-button>
+        <n-button size="large" type="primary" @click="showModal = true"
+          >添加</n-button
+        >
       </div>
     </div>
     <data-table
@@ -38,15 +33,23 @@
       />
     </div>
   </div>
+  <modal-vue :show="showModal" @model-close="handleModelClose"></modal-vue>
 </template>
 <script lang="ts" setup>
 import DataTable from "@/components/dataTable.vue";
+import ModalVue from "./components/modal.vue";
 import { ref, onMounted, Ref, reactive } from "vue";
 import { Color, searchColorReqBody } from "@/api/me/index";
 import { dropdownOptions, listItem, columns } from "./color";
 
 const color = new Color();
 const data: Ref<listItem[]> = ref([]);
+
+// modal
+const showModal = ref(false);
+const handleModelClose = () => {
+  showModal.value = false;
+};
 
 // 查询
 let form: searchColorReqBody = reactive({
@@ -70,7 +73,7 @@ const handlePageSizeChange = (pageSize: number) => {
   getList({ ...form, page: 1 });
 };
 
-// 查询
+// 请求-查询
 const getList = (form: searchColorReqBody) => {
   Promise.all([
     color.getList(form),
