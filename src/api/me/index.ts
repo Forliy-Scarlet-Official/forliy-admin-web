@@ -4,7 +4,7 @@ import { normalApi, getListReqBody } from "@/api/index";
 export interface searchColorReqBody extends getListReqBody {
   name?: string;
 }
-interface updateColorReqBody {
+export interface updateColorReqBody {
   name: string;
   a: number;
   r: number;

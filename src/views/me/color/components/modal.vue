@@ -23,17 +23,19 @@
   </n-modal>
 </template>
 <script lang="ts" setup>
+import { Color, updateColorReqBody } from "@/api/me";
 import { defineProps, defineEmits, reactive, ref } from "vue";
-import { formType } from "../color";
-defineProps({
+const { req } = defineProps({
   show: Boolean,
+  req: Color,
 });
 
-const form: formType = reactive({
+const form: updateColorReqBody = reactive({
   name: "",
   r: 0,
   g: 0,
   b: 0,
+  a: 255,
 });
 const color = ref("rgb(0,0,0)");
 function setColorToRGB(color: string) {
@@ -46,7 +48,8 @@ function setColorToRGB(color: string) {
 
 function handleSubmit() {
   setColorToRGB(color.value);
-  console.log(form);
+  // console.log(form);
+  req?.add(form).then((res) => {});
 }
 
 const emit = defineEmits(["modelClose"]);

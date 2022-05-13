@@ -33,7 +33,11 @@
       />
     </div>
   </div>
-  <modal-vue :show="showModal" @model-close="handleModelClose"></modal-vue>
+  <modal-vue
+    :show="showModal"
+    :req="color"
+    @model-close="handleModelClose"
+  ></modal-vue>
 </template>
 <script lang="ts" setup>
 import DataTable from "@/components/dataTable.vue";
