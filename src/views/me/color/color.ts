@@ -51,3 +51,10 @@ export const columns: DataTableColumns<listItem> = [
     },
   },
 ];
+// 表单
+export interface formType {
+  name: string;
+  r: number;
+  g: number;
+  b: number;
+}
