@@ -51,3 +51,16 @@ export const columns: DataTableColumns<listItem> = [
     },
   },
 ];
+//表单验证
+export const rules = {
+  name:{
+    required: true,
+    message: '请输入颜色名称',
+    trigger: 'blur'
+  },
+  color:{
+    required: true,
+    message: '请选择颜色',
+    trigger: 'change'
+  }
+}
