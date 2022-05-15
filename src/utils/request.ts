@@ -68,7 +68,7 @@ export const get = (
         resolve(res.data);
       })
       .catch((err) => {
-        reject(err.data);
+        reject(err);
       });
   });
 };
@@ -91,7 +91,7 @@ export const post = (
         resolve(res.data);
       })
       .catch((err) => {
-        reject(err.data);
+        reject(err);
       });
   });
 };

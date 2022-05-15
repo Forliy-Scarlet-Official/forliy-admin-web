@@ -1,19 +1,19 @@
 <template>
   <n-modal
-      v-model:show="show"
-      preset="dialog"
-      :on-after-leave="handleModelClose"
+    v-model:show="show"
+    preset="dialog"
+    :on-after-leave="handleModelClose"
   >
     <template #header>颜色管理</template>
     <n-form :model="form" :rules="rules" ref="formRef">
       <n-form-item label="名称" path="name">
-        <n-input v-model:value="form.name"/>
+        <n-input v-model:value="form.name" />
       </n-form-item>
       <n-form-item label="颜色" path="color">
         <n-color-picker
-            :modes="['rgb']"
-            v-model:value="color"
-            :show-alpha="false"
+          :modes="['rgb']"
+          v-model:value="color"
+          :show-alpha="false"
         />
       </n-form-item>
     </n-form>
@@ -23,13 +23,15 @@
   </n-modal>
 </template>
 <script lang="ts" setup>
-import {Color, updateColorReqBody} from "@/api/me";
-import {rules} from "../color"
-import {defineProps, defineEmits, reactive, ref, Ref} from "vue";
+import { updateColorReqBody } from "@/api/me";
+import { rules } from "../color";
+import { defineProps, defineEmits, reactive, ref, Ref } from "vue";
 
-const {req} = defineProps({
+const emit = defineEmits(["modelClose", "addColor"]);
+
+const { type } = defineProps({
+  type: String,
   show: Boolean,
-  req: Color,
 });
 
 const form: updateColorReqBody = reactive({
@@ -52,17 +54,18 @@ function setColorToRGB(color: string) {
 }
 
 // 提交
-const formRef: Ref = ref()
+const formRef: Ref = ref();
 
 function handleSubmit() {
-  console.log(formRef.value)
-  // setColorToRGB(color.value);
-  // req?.add(form).then((res) => {
-  // });
+  formRef.value?.validate((errors: boolean) => {
+    if (!errors) {
+      setColorToRGB(color.value);
+      emit("addColor", form);
+    }
+  });
 }
 
 // 关闭窗口
-const emit = defineEmits(["modelClose"]);
 
 function handleModelClose() {
   emit("modelClose");

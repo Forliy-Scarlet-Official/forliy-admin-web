@@ -21,12 +21,14 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref, nextTick } from "vue";
+import { defineProps, ref, nextTick, defineEmits } from "vue";
+import { DropdownOption } from "naive-ui";
 defineProps({
   tableColumns: Array,
   tableData: Array,
   dropdownOptions: Array,
 });
+const emit = defineEmits(["dropdownClick"]);
 
 /**
  * 右键菜单相关
@@ -34,7 +36,9 @@ defineProps({
 const x = ref(0);
 const y = ref(0);
 const showDropdown = ref(false);
-const handleDropSelect = () => {
+const handleDropSelect = (key: string | number, option: DropdownOption) => {
+  emit("dropdownClick", key, option);
+
   showDropdown.value = false;
 };
 const onClickoutside = () => {

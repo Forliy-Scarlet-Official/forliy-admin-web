@@ -1,13 +1,15 @@
 <template>
   <div :class="['menu', collapsed ? 'collapsed' : '']">
-    <div class="icon">
+    <div :class="['icon', collapsed ? 'icon--collapsed' : '']">
       <img
         src="http://q1.qlogo.cn/g?b=qq&nk=2257290268&s=640"
         alt=""
         :class="collapsed ? 'collapsed' : ''"
         @click="collapsed = !collapsed"
       />
-      <span class="title">Forliy Admin</span>
+      <span class="title" :style="{ color: themeVars.primaryColor }"
+        >Forliy Admin</span
+      >
     </div>
     <n-menu
       :options="menuOptions"
@@ -24,9 +26,11 @@
 import { h, Component, ref, computed } from "vue";
 import { RouteRecordRaw, RouterLink } from "vue-router";
 import { useRoute } from "vue-router";
-import { NIcon } from "naive-ui";
-import type { MenuOption } from "naive-ui";
+import { MenuOption, NIcon, useThemeVars } from "naive-ui";
 import { routes } from "../../router/index";
+
+// naive原生主题变量
+const themeVars = useThemeVars();
 
 function renderIcon(icon: Component) {
   return () => h(NIcon, null, { default: () => h(icon) });
@@ -91,14 +95,20 @@ function renderMenuOptions(routes: RouteRecordRaw[] | undefined) {
   .icon {
     cursor: pointer;
     width: 100%;
-    height: 100px;
+    height: 130px;
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0 10px;
+    padding: 10px;
+    transition: 0.2s;
+    &--collapsed {
+      height: 60px;
+    }
     .title {
       transition: 0.2s;
       font-size: 20px;
-      color: #6e2234ff;
+      margin-top: 10px;
+      // color: #6e2234;
       flex: 1;
       overflow: hidden;
       text-align: center;
@@ -113,6 +123,9 @@ function renderMenuOptions(routes: RouteRecordRaw[] | undefined) {
       display: block;
       border-radius: 50%;
       transition: 0.2s;
+      &:hover {
+        box-shadow: 0 0 1px 4px rgba($color: #6e2234, $alpha: 0.3);
+      }
     }
   }
 }

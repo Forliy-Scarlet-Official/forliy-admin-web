@@ -12,7 +12,13 @@
         />
       </div>
       <div class="search-add">
-        <n-button size="large" type="primary" @click="showModal = true"
+        <n-button
+          size="large"
+          type="primary"
+          @click="
+            showModal = true;
+            type = 'add';
+          "
           >添加</n-button
         >
       </div>
@@ -21,6 +27,7 @@
       :tableColumns="columns"
       :tableData="data"
       :dropdownOptions="dropdownOptions"
+      @dropdownClick="dropdownClick"
     ></data-table>
     <div class="pagination">
       <n-pagination
@@ -36,25 +43,31 @@
   <modal-vue
     :show="showModal"
     :req="color"
+    :type="type"
     @model-close="handleModelClose"
+    @add-color="addColor"
   ></modal-vue>
 </template>
 <script lang="ts" setup>
 import DataTable from "@/components/dataTable.vue";
 import ModalVue from "./components/modal.vue";
+import { useMessage, DropdownOption } from "naive-ui";
 import { ref, onMounted, Ref, reactive } from "vue";
-import { Color, searchColorReqBody } from "@/api/me/index";
+import { Color, searchColorReqBody, updateColorReqBody } from "@/api/me/index";
 import { dropdownOptions, listItem, columns } from "./color";
 
 const color = new Color();
 const data: Ref<listItem[]> = ref([]);
 
-// modal
+/**
+ * modal
+ * type: 添加/修改
+ */
 const showModal = ref(false);
+const type = ref("");
 const handleModelClose = () => {
   showModal.value = false;
 };
-
 // 查询
 let form: searchColorReqBody = reactive({
   limit: 10,
@@ -68,16 +81,11 @@ const handleSearch = () => {
   getList({ ...form, page: 1 });
 };
 
-const handlePageChange = (page: number) => {
-  form.page = page;
-  getList({ ...form });
-};
-const handlePageSizeChange = (pageSize: number) => {
-  form.limit = pageSize;
-  getList({ ...form, page: 1 });
-};
-
-// 请求-查询
+/**
+ * 请求
+ */
+const message = useMessage();
+// 请求--查询
 const getList = (form: searchColorReqBody) => {
   Promise.all([
     color.getList(form),
@@ -87,6 +95,35 @@ const getList = (form: searchColorReqBody) => {
     total.value = vals[1];
   });
 };
+// 请求--添加
+const addColor = (form: updateColorReqBody) => {
+  color.add(form).then((res) => {
+    message.success("添加颜色成功");
+    showModal.value = false;
+  });
+};
+// 请求--修改
+const editColor = () => {};
+// 请求--删除
+const deleteColor = () => {};
+
+// 分页方法
+const handlePageChange = (page: number) => {
+  form.page = page;
+  getList({ ...form });
+};
+const handlePageSizeChange = (pageSize: number) => {
+  form.limit = pageSize;
+  getList({ ...form, page: 1 });
+};
+
+/**
+ * 右键菜单
+ */
+const dropdownClick = (key: string) => {
+  key == "edit" ? editColor() : deleteColor();
+};
+
 onMounted(() => {
   getList(form);
 });
