@@ -51,18 +51,17 @@
 <script lang="ts" setup>
 import DataTable from "@/components/dataTable.vue";
 import ModalVue from "./components/modal.vue";
-import {
-  useMessage,
-  DropdownOption,
-  NButton,
-  NInput,
-  NPagination,
-} from "naive-ui";
+import { useMessage, NButton, NInput, NPagination } from "naive-ui";
 import { ref, onMounted, Ref, reactive } from "vue";
-import { Color, searchColorReqBody, updateColorReqBody } from "@/api/me/index";
+import {
+  useColorResponsitories,
+  SearchColorReqBody,
+  UpdateColorReqBody,
+} from "@/api/me/index";
 import { dropdownOptions, listItem, columns } from "./color";
 
-const color = new Color();
+const color = useColorResponsitories();
+
 const data: Ref<listItem[]> = ref([]);
 
 /**
@@ -75,7 +74,7 @@ const handleModelClose = () => {
   showModal.value = false;
 };
 // 查询
-let form: searchColorReqBody = reactive({
+let form: SearchColorReqBody = reactive({
   limit: 10,
   page: 1,
   name: "",
@@ -92,18 +91,18 @@ const handleSearch = () => {
  */
 const message = useMessage();
 // 请求--查询
-const getList = (form: searchColorReqBody) => {
+const getList = (form: SearchColorReqBody) => {
   Promise.all([
     color.getList(form),
     color.getCount({ name: String(form.name) }),
-  ]).then((vals) => {
+  ]).then((vals: any) => {
     data.value = vals[0];
     total.value = vals[1];
   });
 };
 // 请求--添加
-const addColor = (form: updateColorReqBody) => {
-  color.add(form).then((res) => {
+const addColor = (form: UpdateColorReqBody) => {
+  color.add(form).then(() => {
     message.success("添加颜色成功");
     showModal.value = false;
   });

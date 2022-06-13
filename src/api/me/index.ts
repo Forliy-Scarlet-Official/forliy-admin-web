@@ -1,28 +1,33 @@
 import { get, post } from "@/utils/request";
-import { normalApi, getListReqBody } from "@/api/index";
+import { NormalApi, GetListReqBody } from "@/api/index";
 
-export interface searchColorReqBody extends getListReqBody {
+export interface SearchColorReqBody extends GetListReqBody {
   name?: string;
 }
-export interface updateColorReqBody {
+export interface UpdateColorReqBody {
   name: string;
   a: number;
   r: number;
   g: number;
   b: number;
 }
-export class Color extends normalApi {
-  getItemById = (id: string) => get("/color", {}, { path: id });
 
-  getList = (params: searchColorReqBody) => get("/color/list", params);
-
-  getCount = (params: { id?: number; name: string }) =>
+export function useColorResponsitories(): NormalApi {
+  const getItemById = (id: string) => get("/color", {}, { path: id });
+  const getList = (params: SearchColorReqBody) => get("/color/list", params);
+  const getCount = (params: { id?: number; name: string }) =>
     get("/color/count", params);
-
-  add = (data: updateColorReqBody) => post("/color", data);
-
-  update = (data: updateColorReqBody, id: string) =>
+  const add = (data: UpdateColorReqBody) => post("/color", data);
+  const update = (data: UpdateColorReqBody, id: string) =>
     post("/color/", data, { path: id, type: "put" });
+  const del = (id: string) => get("/color/", "", { path: id, type: "delete" });
 
-  delete = (id: string) => get("/color/", "", { path: id, type: "delete" });
+  return {
+    getItemById,
+    getList,
+    getCount,
+    add,
+    update,
+    del,
+  };
 }

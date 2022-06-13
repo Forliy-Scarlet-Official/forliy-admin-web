@@ -23,10 +23,17 @@
   </n-modal>
 </template>
 <script lang="ts" setup>
-import { updateColorReqBody } from "@/api/me";
+import { UpdateColorReqBody } from "@/api/me";
 import { rules } from "../color";
 import { defineProps, defineEmits, reactive, ref, Ref } from "vue";
-import { NModal, NForm, NFormItem, NInput } from "naive-ui";
+import {
+  NModal,
+  NForm,
+  NFormItem,
+  NInput,
+  NButton,
+  NColorPicker,
+} from "naive-ui";
 
 const emit = defineEmits(["modelClose", "addColor"]);
 
@@ -35,7 +42,7 @@ const { type } = defineProps({
   show: Boolean,
 });
 
-const form: updateColorReqBody = reactive({
+const form: UpdateColorReqBody = reactive({
   name: "",
   r: 0,
   g: 0,

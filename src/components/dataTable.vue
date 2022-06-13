@@ -29,9 +29,9 @@ import {
   NDropdown,
 } from "naive-ui";
 defineProps({
-  tableColumns: Array<any>,
-  tableData: Array<any>,
-  dropdownOptions: Array<any>,
+  tableColumns: Array as any,
+  tableData: Array as any,
+  dropdownOptions: Array as any,
 });
 const emit = defineEmits(["dropdownClick"]);
 
