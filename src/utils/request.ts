@@ -38,10 +38,10 @@ axios.interceptors.response.use(
         bus.emit("onError", "找不到资源");
         break;
       case 500:
-        bus.emit("onError", "服务端错误");
+        bus.emit("onError", "服务端异常");
         break;
       case 503:
-        bus.emit("onError", "服务端错误");
+        bus.emit("onError", "服务端异常");
         break;
       default:
         break;
