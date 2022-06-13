@@ -22,11 +22,16 @@
 
 <script lang="ts" setup>
 import { defineProps, ref, nextTick, defineEmits } from "vue";
-import { DropdownOption, NDataTable, NDropdown } from "naive-ui";
+import {
+  DataTableColumns,
+  DropdownOption,
+  NDataTable,
+  NDropdown,
+} from "naive-ui";
 defineProps({
-  tableColumns: Array,
-  tableData: Array,
-  dropdownOptions: Array,
+  tableColumns: Array<any>,
+  tableData: Array<any>,
+  dropdownOptions: Array<any>,
 });
 const emit = defineEmits(["dropdownClick"]);
 
