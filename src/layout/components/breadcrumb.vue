@@ -9,6 +9,7 @@
 <script lang="ts" setup>
 import { ref, onBeforeMount, computed } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { NBreadcrumb, NBreadcrumbItem } from "naive-ui";
 interface breadCrumbItem {
   path: string;
   title: string;

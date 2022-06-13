@@ -51,7 +51,13 @@
 <script lang="ts" setup>
 import DataTable from "@/components/dataTable.vue";
 import ModalVue from "./components/modal.vue";
-import { useMessage, DropdownOption } from "naive-ui";
+import {
+  useMessage,
+  DropdownOption,
+  NButton,
+  NInput,
+  NPagination,
+} from "naive-ui";
 import { ref, onMounted, Ref, reactive } from "vue";
 import { Color, searchColorReqBody, updateColorReqBody } from "@/api/me/index";
 import { dropdownOptions, listItem, columns } from "./color";

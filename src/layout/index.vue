@@ -1,6 +1,6 @@
 <template>
   <n-theme-editor>
-<!--    <n-config-provider :theme-overrides="themeOverrides">-->
+    <!-- <n-config-provider :theme-overrides="themeOverrides">-->
     <n-config-provider>
       <div id="layout">
         <layout-menu></layout-menu>
@@ -15,7 +15,12 @@
   </n-theme-editor>
 </template>
 <script lang="ts" setup>
-import {GlobalThemeOverrides, useMessage, NThemeEditor, NConfigProvider} from "naive-ui";
+import {
+  GlobalThemeOverrides,
+  useMessage,
+  NThemeEditor,
+  NConfigProvider,
+} from "naive-ui";
 import LayoutMenu from "./components/menu.vue";
 import LayoutHeader from "./components/header.vue";
 import bus from "@/utils/bus";

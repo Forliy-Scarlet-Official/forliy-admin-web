@@ -23,11 +23,12 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { h, Component, ref, computed } from "vue";
-import { RouteRecordRaw, RouterLink } from "vue-router";
+import { h, Component, ref, computed, ComputedRef } from "vue";
+import { RouteRecordName, RouteRecordRaw, RouterLink } from "vue-router";
 import { useRoute } from "vue-router";
-import { MenuOption, NIcon, useThemeVars } from "naive-ui";
+import { MenuOption, NIcon, NMenu, useThemeVars } from "naive-ui";
 import { routes } from "../../router/index";
+import { Key } from "naive-ui/lib/menu/src/interface";
 
 // naive原生主题变量
 const themeVars = useThemeVars();
@@ -44,11 +45,11 @@ const menuOptions: MenuOption[] | undefined = renderMenuOptions(
 //当前选中菜单并展开（key）
 const route = useRoute();
 const currentPage = computed(() => {
-  return route.name;
+  return String(route.name);
 });
-const expandedKeys = computed(() => {
+const expandedKeys: ComputedRef<Key[]> = computed(() => {
   const arr = route.matched.map((item) => {
-    return item.name;
+    return String(item.name);
   });
   return arr;
 });

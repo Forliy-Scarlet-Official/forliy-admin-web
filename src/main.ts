@@ -4,7 +4,7 @@ import { routes } from "./router";
 import { setPublicComponents } from "@/utils/publicComponents";
 
 import App from "./App.vue";
-import naive from "naive-ui";
+// import naive from "naive-ui";
 
 const app = createApp(App);
 
@@ -17,5 +17,5 @@ const router = VueRouter.createRouter({
 setPublicComponents(app);
 
 app.use(router);
-app.use(naive);
+// app.use(naive);
 app.mount("#app");

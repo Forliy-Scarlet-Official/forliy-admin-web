@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import { defineProps, ref, nextTick, defineEmits } from "vue";
-import { DropdownOption } from "naive-ui";
+import { DropdownOption, NDataTable, NDropdown } from "naive-ui";
 defineProps({
   tableColumns: Array,
   tableData: Array,

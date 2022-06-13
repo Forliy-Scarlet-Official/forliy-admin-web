@@ -8,7 +8,9 @@
     </n-gradient-text>
   </div>
 </template>
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+import { NGradientText } from "naive-ui";
+</script>
 <style lang="scss" scoped>
 .home {
   padding: 20px;

@@ -26,6 +26,7 @@
 import { updateColorReqBody } from "@/api/me";
 import { rules } from "../color";
 import { defineProps, defineEmits, reactive, ref, Ref } from "vue";
+import { NModal, NForm, NFormItem, NInput } from "naive-ui";
 
 const emit = defineEmits(["modelClose", "addColor"]);
 
