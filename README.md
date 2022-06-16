@@ -14,6 +14,20 @@
   <img src="https://cdn.svgporn.com/logos/naiveui.svg" width="60"/>
 </a>
 
+## 启动
+- dev
+  ```bash
+  npm run dev
+  ```
+- mock
+  ```bash
+  npm run mock
+  ```
+- build
+  ```bash
+  npm run build
+  ```
+
 ## 简介
 打通传统法欧莉管理困难的技术壁垒，以数字化转型为抓手为法欧莉管理产业渗透赋能，
 沉淀行业中的技术精髓，加速法欧莉管理产业的数字化改造落地； 细分法欧莉管理产业链运营模式，
@@ -108,17 +122,3 @@
 亮点是通道，优势是规模。吃透整个交付价值，加速心智梳理关键路径。结构化是差异化达到一致性标准。
 
 
-
-## 启动
-- dev
-  ```bash
-  npm run dev
-  ```
-- mock
-  ```bash
-  npm run mock
-  ```
-- build
-  ```bash
-  npm run build
-  ```
