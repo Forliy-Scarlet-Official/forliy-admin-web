@@ -133,6 +133,18 @@ onMounted(() => {
   getList(form);
 });
 </script>
+<style lang="scss">
+.color-preview {
+  border-radius: 50%;
+  transition: 0.2s;
+  width: 20px;
+  height: 20px;
+  &:hover {
+    border-radius: 4px;
+    width: 40px;
+  }
+}
+</style>
 <style lang="scss" scoped>
 .page {
   .search {

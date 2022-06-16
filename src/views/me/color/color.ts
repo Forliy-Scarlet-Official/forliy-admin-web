@@ -20,6 +20,7 @@ export type listItem = {
   g: number;
   b: number;
 };
+
 export const columns: DataTableColumns<listItem> = [
   {
     title: "名称",
@@ -45,9 +46,16 @@ export const columns: DataTableColumns<listItem> = [
     title: "预览",
     key: "actions",
     render(row) {
-      return h("div", {
-        style: `width:50px;height:20px;background:rgba(${row.r},${row.g},${row.b},${row.a})`,
-      });
+      return h(
+        "div",
+        {
+          style: "width: 20px;height: 20px",
+        },
+        h("div", {
+          style: `background:rgba(${row.r},${row.g},${row.b},${row.a});`,
+          class: "color-preview",
+        })
+      );
     },
   },
 ];

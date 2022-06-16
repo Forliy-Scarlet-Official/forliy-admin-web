@@ -4,7 +4,7 @@
   <n-config-provider :theme="dark ? darkTheme : null">
     <n-layout position="absolute" style="bottom: 0; top: 0; left: 0; right: 0">
       <layout-header
-        @on-theme-change="dark = !dark"
+        @on-theme-change="triggerTheme"
         :dark="dark"
       ></layout-header>
       <n-layout position="absolute" style="top: 64px" id="layout" has-sider>
@@ -29,13 +29,13 @@ import {
   NLayoutContent,
   darkTheme,
 } from "naive-ui";
-import { ref } from "vue";
+import { useThemeManager } from "./layout";
 import LayoutMenu from "./components/menu.vue";
 import LayoutHeader from "./components/header.vue";
 import BreadCrumb from "./components/breadcrumb.vue";
 import bus from "@/utils/bus";
 
-const dark = ref(false);
+const { dark, triggerTheme } = useThemeManager();
 
 const message = useMessage();
 bus.on("onError", (msg) => {
