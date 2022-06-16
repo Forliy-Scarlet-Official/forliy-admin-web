@@ -135,7 +135,6 @@ onMounted(() => {
 </script>
 <style lang="scss" scoped>
 .page {
-  padding: 20px;
   .search {
     padding-bottom: 20px;
     display: flex;

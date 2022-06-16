@@ -11,8 +11,4 @@
 <script lang="ts" setup>
 import { NGradientText } from "naive-ui";
 </script>
-<style lang="scss" scoped>
-.home {
-  padding: 20px;
-}
-</style>
+<style lang="scss" scoped></style>
