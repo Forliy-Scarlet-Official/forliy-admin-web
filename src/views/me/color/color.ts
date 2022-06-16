@@ -43,7 +43,7 @@ export const columns: DataTableColumns<listItem> = [
     key: "b",
   },
   {
-    title: "预览",
+    title: "颜色预览",
     key: "actions",
     render(row) {
       return h(
