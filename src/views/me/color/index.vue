@@ -59,6 +59,7 @@ import {
   UpdateColorReqBody,
 } from "@/api/me/index";
 import { dropdownOptions, listItem, columns } from "./color";
+import { useStore } from "@/stores/theme";
 
 const color = useColorResponsitories();
 

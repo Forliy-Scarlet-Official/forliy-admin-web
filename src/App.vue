@@ -5,6 +5,12 @@
 </template>
 <script setup lang="ts">
 import { NMessageProvider } from "naive-ui";
+import { onMounted } from "vue";
+import { useStore } from "@/stores/theme";
+const themeStore = useStore();
+onMounted(() => {
+  themeStore.initThemeState();
+});
 </script>
 <style lang="scss">
 * {

@@ -1,9 +1,8 @@
 import { ref, onMounted } from "vue";
 import { eStorage } from "easy-async-storage";
+export const themeKey = "forliy-admin-theme";
 
 export const useThemeManager = () => {
-  const themeKey = "forliy-admin-theme";
-
   const $e = eStorage();
   const dark = ref(false);
 
