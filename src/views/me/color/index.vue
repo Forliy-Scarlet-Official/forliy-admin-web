@@ -17,7 +17,7 @@
           type="primary"
           @click="
             showModal = true;
-            type = 'add';
+            type = 0;
           "
           >添加</n-button
         >
@@ -45,13 +45,20 @@
     :req="color"
     :type="type"
     @model-close="handleModelClose"
-    @add-color="addColor"
+    @submit="submit"
+    ref="modalRef"
   ></modal-vue>
 </template>
 <script lang="ts" setup>
 import DataTable from "@/components/dataTable.vue";
 import ModalVue from "./components/modal.vue";
-import { useMessage, NButton, NInput, NPagination } from "naive-ui";
+import {
+  useMessage,
+  NButton,
+  NInput,
+  NPagination,
+  DropdownOption,
+} from "naive-ui";
 import { ref, onMounted, Ref, reactive } from "vue";
 import {
   useColorResponsitories,
@@ -59,7 +66,6 @@ import {
   UpdateColorReqBody,
 } from "@/api/me/index";
 import { dropdownOptions, listItem, columns } from "./color";
-import { useStore } from "@/stores/theme";
 
 const color = useColorResponsitories();
 
@@ -70,7 +76,7 @@ const data: Ref<listItem[]> = ref([]);
  * type: 添加/修改
  */
 const showModal = ref(false);
-const type = ref("");
+const type = ref(0);
 const handleModelClose = () => {
   showModal.value = false;
 };
@@ -109,9 +115,11 @@ const addColor = (form: UpdateColorReqBody) => {
   });
 };
 // 请求--修改
-const editColor = () => {};
+const editColor = (item: any) => {
+  color.update(item, item.id);
+};
 // 请求--删除
-const deleteColor = () => {};
+const deleteColor = (id: number) => {};
 
 // 分页方法
 const handlePageChange = (page: number) => {
@@ -126,8 +134,27 @@ const handlePageSizeChange = (pageSize: number) => {
 /**
  * 右键菜单
  */
-const dropdownClick = (key: string) => {
-  key == "edit" ? editColor() : deleteColor();
+const modalRef = ref();
+const submit = (row: UpdateColorReqBody) => {
+  if (type.value == 0) {
+    addColor(row);
+  } else if (type.value == 1) {
+    editColor(row);
+  }
+};
+const dropdownClick = (row: any, key: string) => {
+  switch (key) {
+    case "edit":
+      type.value = 1;
+      modalRef.value.initForm(row);
+      showModal.value = true;
+      break;
+    case "delete":
+      deleteColor(row.id);
+      break;
+    default:
+      break;
+  }
 };
 
 onMounted(() => {
