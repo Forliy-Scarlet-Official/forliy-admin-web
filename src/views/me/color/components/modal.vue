@@ -25,7 +25,14 @@
 <script lang="ts" setup>
 import { UpdateColorReqBody } from "@/api/me";
 import { rules } from "../color";
-import { defineProps, defineEmits, reactive, ref, Ref } from "vue";
+import {
+  defineProps,
+  defineEmits,
+  defineExpose,
+  reactive,
+  ref,
+  Ref,
+} from "vue";
 import {
   NModal,
   NForm,
@@ -35,14 +42,13 @@ import {
   NColorPicker,
 } from "naive-ui";
 
-const emit = defineEmits(["modelClose", "addColor"]);
-
-const { type } = defineProps({
-  type: String,
+const emit = defineEmits(["modelClose", "submit"]);
+const { type, show } = defineProps({
+  type: Number,
   show: Boolean,
 });
 
-const form: UpdateColorReqBody = reactive({
+let form: Ref<UpdateColorReqBody> = ref({
   name: "",
   r: 0,
   g: 0,
@@ -56,9 +62,12 @@ const color = ref("rgb(0,0,0)");
 function setColorToRGB(color: string) {
   const cString = color.replace(/[rgb()]/g, "");
   const cArr = cString.split(",");
-  form.r = Number(cArr[0]);
-  form.g = Number(cArr[1]);
-  form.b = Number(cArr[2]);
+  form.value.r = Number(cArr[0]);
+  form.value.g = Number(cArr[1]);
+  form.value.b = Number(cArr[2]);
+}
+function setRgbToColor(form: UpdateColorReqBody) {
+  color.value = `rgb(${form.r},${form.g},${form.b})`;
 }
 
 // 提交
@@ -68,7 +77,7 @@ function handleSubmit() {
   formRef.value?.validate((errors: boolean) => {
     if (!errors) {
       setColorToRGB(color.value);
-      emit("addColor", form);
+      emit("submit", form.value);
     }
   });
 }
@@ -77,6 +86,24 @@ function handleSubmit() {
 
 function handleModelClose() {
   emit("modelClose");
+  form.value = {
+    name: "",
+    r: 0,
+    g: 0,
+    b: 0,
+    a: 255,
+  };
+  color.value = "rgb(0,0,0)";
+  setColorToRGB(color.value);
 }
+
+// 数据回显
+const initForm = (row: UpdateColorReqBody) => {
+  form.value = { ...row };
+  setRgbToColor(row);
+};
+defineExpose({
+  initForm,
+});
 </script>
 <style lang="scss" scoped></style>

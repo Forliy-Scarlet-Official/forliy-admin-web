@@ -21,13 +21,8 @@
 </template>
 
 <script lang="ts" setup>
-import { defineProps, ref, nextTick, defineEmits } from "vue";
-import {
-  DataTableColumns,
-  DropdownOption,
-  NDataTable,
-  NDropdown,
-} from "naive-ui";
+import { defineProps, ref, Ref, nextTick, defineEmits } from "vue";
+import { DropdownOption, NDataTable, NDropdown } from "naive-ui";
 defineProps({
   tableColumns: Array as any,
   tableData: Array as any,
@@ -41,17 +36,20 @@ const emit = defineEmits(["dropdownClick"]);
 const x = ref(0);
 const y = ref(0);
 const showDropdown = ref(false);
+const selectedRowProps: Ref<any> = ref({});
 const handleDropSelect = (key: string | number, option: DropdownOption) => {
-  emit("dropdownClick", key, option);
-
+  emit("dropdownClick", selectedRowProps.value, key, option);
   showDropdown.value = false;
+  clearSelectedRowProps();
 };
 const onClickoutside = () => {
   showDropdown.value = false;
+  clearSelectedRowProps();
 };
-const rowProps = () => {
+const rowProps = (row: any) => {
   return {
     onContextmenu: (e: MouseEvent) => {
+      selectedRowProps.value = row;
       e.preventDefault();
       showDropdown.value = false;
       nextTick().then(() => {
@@ -61,6 +59,9 @@ const rowProps = () => {
       });
     },
   };
+};
+const clearSelectedRowProps = () => {
+  selectedRowProps.value = {};
 };
 </script>
 

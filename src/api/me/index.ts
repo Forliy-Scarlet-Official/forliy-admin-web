@@ -5,6 +5,7 @@ export interface SearchColorReqBody extends GetListReqBody {
   name?: string;
 }
 export interface UpdateColorReqBody {
+  id?: number;
   name: string;
   a: number;
   r: number;
