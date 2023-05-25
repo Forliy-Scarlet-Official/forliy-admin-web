@@ -1,20 +1,13 @@
 <script setup lang="ts">
-
+import Layout from "@/layout/index.vue"
 </script>
 
 <template>
-  <div class="app">
-    <div class="app-item"></div>
+  <div class="app" id="app">
+    <Layout></Layout>
   </div>
 </template>
 
 <style lang="scss">
-@import "@/assets/style/reset";
-.app {
-  &-item {
-    width: 100px;
-    height: 100px;
-    background-image: url("@/assets/logo.png");
-  }
-}
+
 </style>
