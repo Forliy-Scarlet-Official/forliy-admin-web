@@ -11,6 +11,8 @@ import naive from "naive-ui";
 
 // 挂载
 const app = createApp(App)
+app.config.globalProperties.api =
+
 app.use(Router)
 app.use(naive)
 app.mount('#app')

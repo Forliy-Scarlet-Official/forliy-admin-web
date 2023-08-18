@@ -15,6 +15,11 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src")
     }
   },
+  server: {
+    proxy: {
+      "/868154-0-default": "http://127.0.0.1:4523/m1"
+    }
+  },
   css: {
     preprocessorOptions: {
       scss: {
