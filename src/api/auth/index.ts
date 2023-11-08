@@ -1,17 +1,5 @@
 import API from "@/utils/request";
-
-interface LoginRes {
-  user: {
-    id: number;
-    username: string;
-    email: string;
-    status: number;
-    createdDate: string;
-  };
-  token: string;
-  tokenVersion: number;
-  tokenExpireAt: string | null;
-}
+import { LoginResponse } from "@/api/auth/interface";
 
 export default {
   // 用户登录
@@ -19,7 +7,9 @@ export default {
     type: string;
     email: string;
     password: string;
-  }): Promise<LoginRes> => API.post("/auth/login", req),
+  }): Promise<LoginResponse> => {
+    return API.post("/auth/login/pwd", req);
+  },
   // 用户注册
   signup: (req: { username: string; email: string; password: string }) =>
     API.post("/auth/signup", req),

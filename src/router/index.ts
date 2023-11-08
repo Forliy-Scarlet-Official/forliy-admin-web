@@ -1,7 +1,8 @@
-import * as VueRouter from "vue-router"
+import * as VueRouter from "vue-router";
 
 const router = VueRouter.createRouter({
   history: VueRouter.createWebHashHistory(),
+  // history: VueRouter.createWebHistory(),
   routes: [
     {
       name: "layout",
@@ -9,11 +10,19 @@ const router = VueRouter.createRouter({
       redirect: "/home",
       component: () => import("@/layout/index.vue"),
       children: [
-        {name: "login", path: "/login", component: () => import("@/views/login/index.vue")},
-        {name: "home", path: "/home", component: () => import("@/views/home/index.vue")},
-      ]
-    }
+        {
+          name: "login",
+          path: "/login",
+          component: () => import("@/views/login/index.vue"),
+        },
+        {
+          name: "home",
+          path: "/home",
+          component: () => import("@/views/home/index.vue"),
+        },
+      ],
+    },
   ],
-})
+});
 
-export default router
+export default router;

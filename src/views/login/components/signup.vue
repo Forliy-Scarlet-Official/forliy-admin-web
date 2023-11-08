@@ -5,6 +5,7 @@ const signRef = ref();
 let model = reactive({
   email: "",
 });
+const onSignup = () => {};
 </script>
 
 <template>
@@ -22,6 +23,7 @@ let model = reactive({
       size="large"
       type="primary"
       style="width: 100%; justify-content: center"
+      @click="onSignup"
     >
       验证邮箱
     </n-button>

@@ -15,7 +15,13 @@ export default defineConfig({
   },
   server: {
     proxy: {
-      "/868154-0-default": "http://127.0.0.1:4523/m1",
+      // "/868154-0-default": "http://127.0.0.1:4523/m1",
+      // "/auth": {
+      //   target: "http://localhost:11810",
+      //   changeOrigin: true,
+      //   secure: true,
+      //   // rewrite: (path) => path.replace(/^\/api/, ""),
+      // },
     },
   },
   css: {

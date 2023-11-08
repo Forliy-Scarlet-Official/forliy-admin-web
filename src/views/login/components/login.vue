@@ -20,10 +20,9 @@ const encryptPwd = (str: string): string => {
 // 登录
 const onLogin = async () => {
   let form = { ...model, password: encryptPwd(model.password) };
-  if (!form.password) {
-    return;
-  }
-
+  // if (!form.password) {
+  //   return;
+  // }
   const res = await Api.auth.login(form);
   // TODO 登陆成功跳转
 };

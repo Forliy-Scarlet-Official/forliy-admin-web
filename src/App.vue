@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Layout from "@/layout/index.vue"
+import Layout from "@/layout/index.vue";
 </script>
 
 <template>
@@ -8,6 +8,4 @@ import Layout from "@/layout/index.vue"
   </div>
 </template>
 
-<style lang="scss">
-
-</style>
+<style lang="scss"></style>
